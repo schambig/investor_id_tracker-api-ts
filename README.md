@@ -1,1 +1,1 @@
-REST API to track investors by identification documents
+REST API to track investors by identification document
