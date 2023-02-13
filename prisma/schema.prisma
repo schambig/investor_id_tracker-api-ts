@@ -9,3 +9,23 @@ datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
+
+model Inversionista {
+  id           Int           @id @default(autoincrement())
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  nombre       String
+  apPaterno    String
+  apMaterno    String
+  nroDocumento Int
+  pep          Boolean
+  DocumentoId  DocumentoId[]
+}
+
+model DocumentoId {
+  id              Int           @id @default(autoincrement())
+  tipoDoc         String
+  descripcion     String
+  inversionista   Inversionista @relation(fields: [inversionistaId], references: [id], onDelete: Cascade)
+  inversionistaId Int
+}
