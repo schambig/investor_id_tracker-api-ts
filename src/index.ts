@@ -2,6 +2,8 @@ import * as dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
 
+import { inversionistaRouter } from "./inversionista/inversionista.router";
+
 // load environment variables from .env file and adds them to the process.env object
 dotenv.config();
 
@@ -29,6 +31,8 @@ const app = express();
 app.use(cors());
 // add express.json middleware to express that parses the incoming JSON payload
 app.use(express.json());
+
+app.use("/api/inversionistas", inversionistaRouter);
 
 // start a server that listen on port 3000, and call the provided callback function when the server starts listening
 app.listen(PORT, () => {
