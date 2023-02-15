@@ -22,3 +22,18 @@ export const listInversionistas = async (): Promise<Inversionista[]> => {
   })
 }
 
+export const getInversionista = async (id: number): Promise<Inversionista | null> => {
+  return db.inversionista.findUnique({
+    where: {
+      id, // this is tha same that id: id,
+    },
+    // select: { we could select only the properties that we want
+    //   id: true,
+    //   nombre: true,
+    //   apPaterno: true,
+    //   apMaterno: true,
+    //   nroDocumento: true,
+    //   pep: true
+    // }
+  })
+}
