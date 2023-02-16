@@ -1,4 +1,4 @@
-import express, { query } from "express";
+import express from "express";
 import type { Request, Response } from "express";
 import { body, validationResult } from "express-validator";
 
@@ -36,13 +36,13 @@ inversionistaRouter.get("/:id", async (request: Request, response: Response) => 
 inversionistaRouter.post(
   "/",
   body("nombre").isString(),
-  body("apPaterno").isString,
-  body("apMaterno").isString,
-  body("nroDocumento").isNumeric,
-  body("pep").isBoolean,
+  body("apPaterno").isString(),
+  body("apMaterno").isString(),
+  body("nroDocumento").isNumeric(),
+  body("pep").isBoolean(),
   async(request: Request, response: Response) => {
-    const errors = validationResult(request);
-    if (!errors.isEmpty()) {
+    const errors = validationResult(request); // check if any validation error occurred
+    if (!errors.isEmpty()) { // if errors is not empty
       return response.status(400).json({ errors: errors.array() });
     }
     try {
