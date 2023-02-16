@@ -53,3 +53,39 @@ inversionistaRouter.post(
       return response.status(500).json(error.message);
     }
   })
+
+// PUT: Update an Inversionista
+// Params: nombre, apPaterno, apMaterno, nroDocumento, pep
+inversionistaRouter.put(
+  "/:id",
+  body("nombre").isString(),
+  body("apPaterno").isString(),
+  body("apMaterno").isString(),
+  body("nroDocumento").isNumeric(),
+  body("pep").isBoolean(),
+  async(request: Request, response: Response) => {
+    const errors = validationResult(request); // check if any validation error occurred
+    if (!errors.isEmpty()) { // if errors is not empty
+      return response.status(400).json({ errors: errors.array() });
+    }
+    const id: number = parseInt(request.params.id, 10);
+    try {
+      const inversionista = request.body
+      const updateInversionista = await InversionistaService.updateInversionista(inversionista, id)
+      return response.status(200).json(updateInversionista)
+    } catch (error: any) {
+      return response.status(500).json(error.message);
+    }
+  }
+)
+
+// DELETE: Delete an Inversionista based on the id
+inversionistaRouter.delete("/:id", async (request: Request, response: Response) => {
+  const id: number = parseInt(request.params.id, 10);
+  try {
+    await InversionistaService.deleteInversionista(id)
+    return response.status(204).json("Inversionista has been successfully deleted")
+  } catch (error: any) {
+    return response.status(500).json(error.message);
+  }
+})
