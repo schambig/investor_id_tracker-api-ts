@@ -84,7 +84,7 @@ inversionistaRouter.delete("/:id", async (request: Request, response: Response) 
   const id: number = parseInt(request.params.id, 10);
   try {
     await InversionistaService.deleteInversionista(id)
-    return response.status(204).json("Inversionista has been successfully deleted")
+    return response.status(200).json("Inversionista has been successfully deleted")
   } catch (error: any) {
     return response.status(500).json(error.message);
   }
