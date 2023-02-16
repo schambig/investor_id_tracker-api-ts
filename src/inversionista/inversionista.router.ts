@@ -3,8 +3,6 @@ import type { Request, Response } from "express";
 import { body, validationResult } from "express-validator";
 
 import * as InversionistaService from "./inversionista.service";
-import { isString } from "util";
-import { request } from "http";
 
 export const inversionistaRouter = express.Router();
 
