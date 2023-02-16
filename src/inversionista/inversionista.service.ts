@@ -28,7 +28,7 @@ export const listInversionistas = async (): Promise<Inversionista[]> => {
 export const getInversionista = async (id: number): Promise<Inversionista | null> => {
   return db.inversionista.findUnique({
     where: {
-      id, // this is the same than id: id, because we use tha same word as
+      id, // this is the same than id: id, because we use tha same word as parameter
     }
     // select: {
     //   id: true,
