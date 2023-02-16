@@ -10,7 +10,7 @@ type Inversionista = {
 }
 
 // to exclude a property cast it as any inside select object:
-// nombre: <any>true,
+// nombre: <any>false,
 
 export const listInversionistas = async (): Promise<Inversionista[]> => {
   return db.inversionista.findMany({
@@ -28,7 +28,7 @@ export const listInversionistas = async (): Promise<Inversionista[]> => {
 export const getInversionista = async (id: number): Promise<Inversionista | null> => {
   return db.inversionista.findUnique({
     where: {
-      id, // this is the same than id: id, because we use tha same word as parameter
+      id, // this is the same than id: id, because we use tha same word as
     }
     // select: {
     //   id: true,
